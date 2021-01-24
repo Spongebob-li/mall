@@ -62,47 +62,6 @@
          <li>滴滴</li>
          <li>滴滴</li>
          <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
-         <li>滴滴</li>
        </ul>
      </div>
  </div>
@@ -116,12 +75,7 @@ import Scroll from 'components/common/scroll/Scroll'
        scoll:null,
      }
    },
-   components: {
-
-   },
-   mounted:{
-   
-   }
+  
  }
 </script>
 

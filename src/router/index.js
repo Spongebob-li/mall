@@ -39,6 +39,12 @@ const routes = [
  
 ]
 
+// 解决路由跳转自己出错的
+const originalReplace = VueRouter.prototype.replace;
+VueRouter.prototype.replace = function replace(location) {
+    return originalReplace.call(this, location).catch(err => err);
+}
+
 
 
 const router = new VueRouter({

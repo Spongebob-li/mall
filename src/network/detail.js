@@ -8,6 +8,12 @@ export function getDetail(iid) {
     })
 }
 
+/// 推荐数据
+export function getRecommend() {
+    return request({
+        url: '/recommend'
+    })
+}
 
 //  商品标题  价格 销量 三包信息提取
 export class Goods {
@@ -35,3 +41,13 @@ export class Shop {
         this.goodsCount = shopInfo.cGoods  // 商品
     }
 }
+
+export class GoodsParam {
+    constructor (info,rule) {
+        // 注： images可能没有值，（有些商品有值，有些商品没有）
+        this.image = info.images ? info.images[0] : '';
+        this.set = info.set
+        this.size = rule.tables
+    }
+}
+

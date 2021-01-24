@@ -126,6 +126,9 @@ export default {
 .better-more span {
     background-color: #f13e3a;
 }
+.shop-bottom {
+    margin: 15px 0;
+}
 .enter-shop {
     text-align: center;
     line-height: 34px;

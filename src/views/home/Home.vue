@@ -50,6 +50,7 @@ import BackTop from "components/content/backTop/BackTop";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
 import { debounce } from "common/utils";
+import {itemListenerMixin, backTopMixin} from 'common/mixin'
 export default {
   name: "Home",
   components: {
@@ -60,8 +61,8 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
-    BackTop,
   },
+  mixins:[itemListenerMixin, backTopMixin],
   data() {
     return {
       banners: [],
@@ -73,10 +74,11 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
-      isShowBackTop: true,
+      isShowBackTop: false,
       tabOffsetTop:0,
       isTabFixed:false,
       saveY:0,
+
     };
   },
   computed: {
@@ -89,8 +91,12 @@ export default {
     this.$refs.scroll.refresh()
   },
   deactivated() {
+    // 保存离开时的Y值
     this.saveY = this.$refs.scroll.getScrollY()
-    console.log(this.saveY)
+    // console.log(this.saveY)
+
+    // 2. 取消全局事件的监听
+    this.$bus.$off('itemImageLoad',this.itemImgListener)
   },
   created() {
     // 不建议created里面放置过多的数据代码，最好只放置主要逻辑，
@@ -103,12 +109,7 @@ export default {
     this.getHomeGoods("sell");
   },
   mounted() {
-
-    const refresh = debounce(this.$refs.scroll.refresh, 50);
-    // 1. 监听item中图片加载完成
-    this.$bus.$on("itemImageLoad", () => {
-      refresh();
-    });
+   
   },
   methods: {
     // 点击事件监听相关的方法
@@ -129,13 +130,13 @@ export default {
 
     },
     // 点击回到顶部的监听事件
-    backClick() {
-      console.log("backClick");
+    // backClick() {     在混入里面已经封装好了，故这里就不需要重复了
+      // console.log("backClick");
       // 通过 this.$refs.scroll，拿到组件scroll里面的scroll属性，调用scroll里面的方法scrollTo(0,0)
       // scrollTo(0,0,500) 第三个参数可以让返回顶部有个时间过渡效果
       //  this.$refs.scroll.scroll.scrollTo(0,0,500)    这是没有封装前的使用方法
-      this.$refs.scroll.scrollTo(0, 0); // 调用 scroll 组件内封装好的 scrollto 方法
-    },
+      // this.$refs.scroll.scrollTo(0, 0); // 调用 scroll 组件内封装好的 scrollto 方法
+    // },
     // 监听回到顶部按钮的显示与隐藏距离
     contentScroll(position) {
       // (-position.y) 前面加负号将position.y转为正值
@@ -187,7 +188,7 @@ export default {
 .home-nav {
   background-color: var(--color-tint);
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   /* 在使用瀏覽器原生滾動時。為了讓導航不跟隨一起滾動 */
   /* position: fixed;
   left: 0;

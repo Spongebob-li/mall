@@ -53,7 +53,7 @@ import BScroll from 'better-scroll'
       scrollTo(x,y, time = 300) {
         this.scroll && this.scroll.scrollTo(x,y,time)
       },
-    refresh() {
+    refresh() { 
       this.scroll && this.scroll.refresh()
     },
     finishPullUp() { // 上拉加载多次方法封装
